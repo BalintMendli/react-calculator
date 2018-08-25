@@ -29,6 +29,7 @@ class App extends Component {
   }
   handleNum(e){
     const value=e.target.innerHTML;
+    const isMaxDigit=this.state.displayValue.length>=24;
     if(this.state.displayValue==='0' || this.state.isResult){
       this.setState((prevState) => {
         return { 
@@ -36,7 +37,7 @@ class App extends Component {
           isResult: false
         }
       });
-    } else{
+    } else if(!isMaxDigit){
       this.setState((prevState) => {
         return { displayValue: prevState.displayValue+value }
       });
@@ -46,6 +47,7 @@ class App extends Component {
     const value=e.target.innerHTML;
     const lastOp=['/','*','+','-'].indexOf(this.state.displayValue[this.state.displayValue.length-1])!==-1;
     const lastPoint=this.state.displayValue.slice(-1)==='.';
+    const isMaxDigit=this.state.displayValue.length>=24;
     if(this.state.displayValue==='0' && (value==='+' || value==='-')){
       this.setState((prevState) => {
         return { 
@@ -53,7 +55,7 @@ class App extends Component {
           isResult: false
         }
       });
-    } else if(!lastOp && !lastPoint && this.state.displayValue!=='0'){
+    } else if(!lastOp && !lastPoint && this.state.displayValue!=='0' && !isMaxDigit){
       this.setState((prevState) => {
         return { 
           displayValue: prevState.displayValue+value,
@@ -71,7 +73,8 @@ class App extends Component {
   }
   handlePoint(){
     const pointCond=this.state.displayValue.split(/[+\-*/]/).pop().indexOf('.')!==-1;
-    if(!pointCond && !this.state.isResult){
+    const isMaxDigit=this.state.displayValue.length>=24;
+    if(!pointCond && !this.state.isResult && !isMaxDigit){
       this.setState((prevState) => {
         return { displayValue: prevState.displayValue+'.' }
       });
