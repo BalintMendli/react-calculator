@@ -13,6 +13,7 @@ class App extends Component {
     this.handleClear = this.handleClear.bind(this);
     this.handleOp = this.handleOp.bind(this);
     this.handlePoint = this.handlePoint.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
   handleEval(){
     const lastOp=['/','*','+','-'].indexOf(this.state.displayValue[this.state.displayValue.length-1])!==-1;
@@ -44,6 +45,7 @@ class App extends Component {
     }
   }
   handleOp(e){
+    console.log(e.target.innerHTML);
     const value=e.target.innerHTML;
     const lastOp=['/','*','+','-'].indexOf(this.state.displayValue[this.state.displayValue.length-1])!==-1;
     const lastPoint=this.state.displayValue.slice(-1)==='.';
@@ -92,9 +94,27 @@ class App extends Component {
       return { displayValue: '0' }
     });
   }
+  handleKeyDown(e){
+    console.log(e.key);
+    if(e.key==='Enter'){
+      this.handleEval();
+    }
+    if(e.key==='.' || e.key===','){
+      this.handlePoint();
+    }
+    if(['/','*','+','-'].indexOf(e.key)!==-1){
+      this.handleOp({target:{innerHTML:e.key}});
+    }
+    if(['0','1','2','3','4','5','6','7','8','9'].indexOf(e.key)!==-1){
+      this.handleNum({target:{innerHTML:e.key}});
+    }
+    if(e.key==='Delete' || e.key==='Backspace'){
+      this.handleClear();
+    }
+  }
   render() {
     return (
-      <div className="App">
+      <div className="App" tabIndex="0" onKeyDown={this.handleKeyDown}>
         <div id="calc-div">
           <div id="display">{this.state.displayValue}</div>
           <div id="AC" className="buttons" onClick={this.handleClear}>AC</div>
