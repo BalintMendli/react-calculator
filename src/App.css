@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: #f5f5dc;
+  background-color: #A6CFE2;
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -9,7 +9,7 @@
 }
 
 #calc-div{
-  background-color: #000000;
+  background-color: #0B0C11;
   height: 420px;
   width: 300px;
   padding: 5px;
@@ -39,13 +39,16 @@
   border: 1px solid #000000;
   border-radius: 5px;
   cursor: pointer;
+  user-select: none;
+  opacity: 0.9;
 }
 
 .buttons:hover{
   border: 1px solid #cccccc;
+  opacity: 1;
 }
 
-#AC{
+#clear{
   grid-column: 1 / 3;
   grid-row: 2;
   background-color: #AC3939;
@@ -81,7 +84,7 @@
   background-color: #4D4D4D;
 }
 
-#minus{
+#subtract{
   grid-column: 4;
   grid-row: 3;
   background-color: #666666;
@@ -105,7 +108,7 @@
   background-color: #4D4D4D;
 }
 
-#plus{
+#add{
   grid-column: 4;
   grid-row: 4;
   background-color: #666666;
@@ -129,7 +132,7 @@
   background-color: #4D4D4D;
 }
 
-#equal{
+#equals{
   grid-column: 4;
   grid-row: 5 / 7;
   background-color: #004466;
@@ -141,7 +144,7 @@
   background-color: #4D4D4D;
 }
 
-#point{
+#decimal{
   grid-column: 3;
   grid-row: 6;
   background-color: #4D4D4D;

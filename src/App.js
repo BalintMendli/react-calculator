@@ -117,23 +117,23 @@ class App extends Component {
       <div className="App" tabIndex="0" onKeyDown={this.handleKeyDown}>
         <div id="calc-div">
           <div id="display">{this.state.displayValue}</div>
-          <div id="AC" className="buttons" onClick={this.handleClear}>AC</div>
+          <div id="clear" className="buttons" onClick={this.handleClear}>AC</div>
           <div id="divide" className="buttons" onClick={this.handleOp}>/</div>
           <div id="multiply" className="buttons" onClick={this.handleOp}>*</div>
           <div id="seven" className="buttons" onClick={this.handleNum}>7</div>
           <div id="eight" className="buttons" onClick={this.handleNum}>8</div>
           <div id="nine" className="buttons" onClick={this.handleNum}>9</div>
-          <div id="minus" className="buttons" onClick={this.handleOp}>-</div>
+          <div id="subtract" className="buttons" onClick={this.handleOp}>-</div>
           <div id="four" className="buttons" onClick={this.handleNum}>4</div>
           <div id="five" className="buttons" onClick={this.handleNum}>5</div>
           <div id="six" className="buttons" onClick={this.handleNum}>6</div>
-          <div id="plus" className="buttons" onClick={this.handleOp}>+</div>
+          <div id="add" className="buttons" onClick={this.handleOp}>+</div>
           <div id="one" className="buttons" onClick={this.handleNum}>1</div>
           <div id="two" className="buttons" onClick={this.handleNum}>2</div>
           <div id="three" className="buttons" onClick={this.handleNum}>3</div>
-          <div id="equal" className="buttons" onClick={this.handleEval}>=</div>
+          <div id="equals" className="buttons" onClick={this.handleEval}>=</div>
           <div id="zero" className="buttons" onClick={this.handleNum}>0</div>
-          <div id="point" className="buttons" onClick={this.handlePoint}>.</div>
+          <div id="decimal" className="buttons" onClick={this.handlePoint}>.</div>
         </div>
       </div>
     );
