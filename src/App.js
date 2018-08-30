@@ -30,7 +30,7 @@ class App extends Component {
   }
   handleNum(e){
     const value=e.target.innerHTML;
-    const isMaxDigit=this.state.displayValue.length>=24;
+    const isMaxDigit=this.state.displayValue.length>=18;
     if(this.state.displayValue==='0' || this.state.isResult){
       this.setState((prevState) => {
         return { 
@@ -49,7 +49,7 @@ class App extends Component {
     const value=e.target.innerHTML;
     const lastOp=['/','*','+','-'].indexOf(this.state.displayValue[this.state.displayValue.length-1])!==-1;
     const lastPoint=this.state.displayValue.slice(-1)==='.';
-    const isMaxDigit=this.state.displayValue.length>=24;
+    const isMaxDigit=this.state.displayValue.length>=18;
     if(this.state.displayValue==='0' && (value==='+' || value==='-')){
       this.setState((prevState) => {
         return { 
@@ -75,7 +75,7 @@ class App extends Component {
   }
   handlePoint(){
     const pointCond=this.state.displayValue.split(/[+\-*/]/).pop().indexOf('.')!==-1;
-    const isMaxDigit=this.state.displayValue.length>=24;
+    const isMaxDigit=this.state.displayValue.length>=18;
     if(!pointCond && !this.state.isResult && !isMaxDigit){
       this.setState((prevState) => {
         return { displayValue: prevState.displayValue+'.' }
