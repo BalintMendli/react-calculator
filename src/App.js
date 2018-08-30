@@ -30,22 +30,22 @@ class App extends Component {
   }
   handleNum(e){
     const value=e.target.innerHTML;
+    const lastZero=this.state.displayValue.slice(-1)==='0';
     const isMaxDigit=this.state.displayValue.length>=18;
-    if(this.state.displayValue==='0' || this.state.isResult){
+    if((this.state.displayValue==='0' || this.state.isResult)){
       this.setState((prevState) => {
         return { 
           displayValue: value,
           isResult: false
         }
       });
-    } else if(!isMaxDigit){
+    } else if(!isMaxDigit && !lastZero){
       this.setState((prevState) => {
         return { displayValue: prevState.displayValue+value }
       });
     }
   }
   handleOp(e){
-    console.log(e.target.innerHTML);
     const value=e.target.innerHTML;
     const lastOp=['/','*','+','-'].indexOf(this.state.displayValue[this.state.displayValue.length-1])!==-1;
     const lastPoint=this.state.displayValue.slice(-1)==='.';
