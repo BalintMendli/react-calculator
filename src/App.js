@@ -96,15 +96,27 @@ class App extends Component {
       });
    }
    handleKeyDown(e) {
-      console.log(e.key);
       if (e.key === 'Enter') {
          this.handleEval();
       }
-      if (e.key === '.' || e.key === ',') {
+      if (e.key === '.' || e.key === ',' || e.key === 'Decimal') {
          this.handlePoint();
       }
-      if (['/', '*', '+', '-'].indexOf(e.key) !== -1) {
-         this.handleOp({ target: { innerHTML: e.key } });
+      if (['/', '*', '+', '-', 'Add', 'Subtract', 'Multiply', 'Divide'].indexOf(e.key) !== -1) {
+         let char = e.key;
+         if (e.key === 'Add') {
+            char = '+';
+         }
+         if (e.key === 'Subtract') {
+            char = '-';
+         }
+         if (e.key === 'Multiply') {
+            char = '*';
+         }
+         if (e.key === 'Divide') {
+            char = '/';
+         }
+         this.handleOp({ target: { innerHTML: char } });
       }
       if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].indexOf(e.key) !== -1) {
          this.handleNum({ target: { innerHTML: e.key } });
