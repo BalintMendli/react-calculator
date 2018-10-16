@@ -1,26 +1,82 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Calculator = (props) => (
-   <div id="calc-div">
-      <div id="display">{props.display}</div>
-      <div id="clear" className="buttons" onClick={props.handleClear}>AC</div>
-      <div id="divide" className="buttons" onClick={props.handleOp}>/</div>
-      <div id="multiply" className="buttons" onClick={props.handleOp}>*</div>
-      <div id="seven" className="buttons" onClick={props.handleNum}>7</div>
-      <div id="eight" className="buttons" onClick={props.handleNum}>8</div>
-      <div id="nine" className="buttons" onClick={props.handleNum}>9</div>
-      <div id="subtract" className="buttons" onClick={props.handleOp}>-</div>
-      <div id="four" className="buttons" onClick={props.handleNum}>4</div>
-      <div id="five" className="buttons" onClick={props.handleNum}>5</div>
-      <div id="six" className="buttons" onClick={props.handleNum}>6</div>
-      <div id="add" className="buttons" onClick={props.handleOp}>+</div>
-      <div id="one" className="buttons" onClick={props.handleNum}>1</div>
-      <div id="two" className="buttons" onClick={props.handleNum}>2</div>
-      <div id="three" className="buttons" onClick={props.handleNum}>3</div>
-      <div id="equals" className="buttons" onClick={props.handleEval}>=</div>
-      <div id="zero" className="buttons" onClick={props.handleNum}>0</div>
-      <div id="decimal" className="buttons" onClick={props.handlePoint}>.</div>
-   </div>
+const Calculator = ({
+  display,
+  handleClear,
+  handleEval,
+  handleNum,
+  handleOp,
+  handlePoint,
+}) => (
+  <div id="calc-div">
+    <div id="display">{display}</div>
+    <button type="button" id="clear" className="buttons" onClick={handleClear}>
+      AC
+    </button>
+    <button type="button" id="divide" className="buttons" onClick={handleOp}>
+      /
+    </button>
+    <button type="button" id="multiply" className="buttons" onClick={handleOp}>
+      *
+    </button>
+    <button type="button" id="seven" className="buttons" onClick={handleNum}>
+      7
+    </button>
+    <button type="button" id="eight" className="buttons" onClick={handleNum}>
+      8
+    </button>
+    <button type="button" id="nine" className="buttons" onClick={handleNum}>
+      9
+    </button>
+    <button type="button" id="subtract" className="buttons" onClick={handleOp}>
+      -
+    </button>
+    <button type="button" id="four" className="buttons" onClick={handleNum}>
+      4
+    </button>
+    <button type="button" id="five" className="buttons" onClick={handleNum}>
+      5
+    </button>
+    <button type="button" id="six" className="buttons" onClick={handleNum}>
+      6
+    </button>
+    <button type="button" id="add" className="buttons" onClick={handleOp}>
+      +
+    </button>
+    <button type="button" id="one" className="buttons" onClick={handleNum}>
+      1
+    </button>
+    <button type="button" id="two" className="buttons" onClick={handleNum}>
+      2
+    </button>
+    <button type="button" id="three" className="buttons" onClick={handleNum}>
+      3
+    </button>
+    <button type="button" id="equals" className="buttons" onClick={handleEval}>
+      =
+    </button>
+    <button type="button" id="zero" className="buttons" onClick={handleNum}>
+      0
+    </button>
+    <button
+      type="button"
+      id="decimal"
+      className="buttons"
+      onClick={handlePoint}
+    >
+      .
+    </button>
+  </div>
 );
+
+Calculator.propTypes = {
+  display: PropTypes.string.isRequired,
+  handleClear: PropTypes.func.isRequired,
+  handleEval: PropTypes.func.isRequired,
+  handleNum: PropTypes.func.isRequired,
+  handleOp: PropTypes.func.isRequired,
+  handlePoint: PropTypes.func.isRequired,
+};
 
 export default Calculator;
