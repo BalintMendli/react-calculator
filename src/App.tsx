@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 import './App.css';
-import BigEval from 'bigeval';
+import { evaluate } from 'mathjs';
 import Calculator from './Calculator';
 
-class App extends Component {
-  constructor(props) {
+interface AppState {
+  displayValue: string;
+  isResult: boolean;
+}
+
+interface EventObj {
+  target: { innerHTML: string };
+}
+
+class App extends Component<{}, AppState> {
+  private appDiv = React.createRef<HTMLDivElement>();
+
+  constructor(props: {}) {
     super(props);
     this.state = {
       displayValue: '0',
-      isResult: false,
+      isResult: false
     };
     this.handleEval = this.handleEval.bind(this);
     this.handleNum = this.handleNum.bind(this);
@@ -19,12 +30,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.div.focus();
+    this.appDiv.current!.focus();
   }
 
   handleEval() {
     const { displayValue } = this.state;
-    const evalObj = new BigEval();
     const lastOp =
       ['/', '*', '+', '-'].indexOf(displayValue[displayValue.length - 1]) !==
       -1;
@@ -32,34 +42,36 @@ class App extends Component {
     if (!lastOp && !lastPoint) {
       this.setState(prevState => ({
         displayValue: (
-          Math.round(1000000000000 * evalObj.exec(prevState.displayValue)) /
+          Math.round(1000000000000 * evaluate(prevState.displayValue)) /
           1000000000000
         ).toString(),
-        isResult: true,
+        isResult: true
       }));
     }
   }
 
-  handleNum(e) {
+  handleNum(e: React.MouseEvent<HTMLButtonElement, MouseEvent> | EventObj) {
     const { displayValue, isResult } = this.state;
-    const value = e.target.innerHTML;
+    const target = e.target as HTMLElement;
+    const value = target.innerHTML;
     const lastZero = displayValue.slice(-1) === '0';
     const isMaxDigit = displayValue.length >= 18;
     if (displayValue === '0' || isResult) {
       this.setState({
         displayValue: value,
-        isResult: false,
+        isResult: false
       });
     } else if (!isMaxDigit && !lastZero) {
       this.setState(prevState => ({
-        displayValue: prevState.displayValue + value,
+        displayValue: prevState.displayValue + value
       }));
     }
   }
 
-  handleOp(e) {
+  handleOp(e: React.MouseEvent<HTMLButtonElement, MouseEvent> | EventObj) {
     const { displayValue } = this.state;
-    const value = e.target.innerHTML;
+    const target = e.target as HTMLElement;
+    const value = target.innerHTML;
     const lastOp =
       ['/', '*', '+', '-'].indexOf(displayValue[displayValue.length - 1]) !==
       -1;
@@ -68,37 +80,34 @@ class App extends Component {
     if (displayValue === '0' && (value === '+' || value === '-')) {
       this.setState({
         displayValue: value,
-        isResult: false,
+        isResult: false
       });
     } else if (!lastOp && !lastPoint && displayValue !== '0' && !isMaxDigit) {
       this.setState(prevState => ({
         displayValue: prevState.displayValue + value,
-        isResult: false,
+        isResult: false
       }));
     } else if (lastOp) {
       this.setState(prevState => ({
         displayValue: prevState.displayValue.slice(0, -1) + value,
-        isResult: false,
+        isResult: false
       }));
     }
   }
 
   handlePoint() {
     const { displayValue, isResult } = this.state;
-    const pointCond =
-      displayValue
-        .split(/[+\-*/]/)
-        .pop()
-        .indexOf('.') !== -1;
+    const displayArr = displayValue.split(/[+\-*/]/);
+    const pointCond = displayArr[displayArr.length - 1].indexOf('.') !== -1;
     const isMaxDigit = displayValue.length >= 18;
     if (!pointCond && !isResult && !isMaxDigit) {
       this.setState(prevState => ({
-        displayValue: `${prevState.displayValue}.`,
+        displayValue: `${prevState.displayValue}.`
       }));
     } else if (isResult) {
       this.setState({
         displayValue: '0.',
-        isResult: false,
+        isResult: false
       });
     }
   }
@@ -107,7 +116,7 @@ class App extends Component {
     this.setState({ displayValue: '0' });
   }
 
-  handleKeyDown(e) {
+  handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
     if (e.key === 'Enter') {
       e.preventDefault();
       this.handleEval();
@@ -151,10 +160,8 @@ class App extends Component {
       <div
         className="App"
         role="tabpanel"
-        tabIndex="0"
-        ref={c => {
-          this.div = c;
-        }}
+        tabIndex={0}
+        ref={this.appDiv}
         onKeyDown={this.handleKeyDown}
       >
         <Calculator

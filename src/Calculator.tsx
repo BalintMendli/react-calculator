@@ -1,5 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
+interface CalculatorProps {
+  display: string;
+  handleClear: React.MouseEventHandler<HTMLButtonElement>;
+  handleEval: React.MouseEventHandler<HTMLButtonElement>;
+  handleNum: React.MouseEventHandler<HTMLButtonElement>;
+  handleOp: React.MouseEventHandler<HTMLButtonElement>;
+  handlePoint: React.MouseEventHandler<HTMLButtonElement>;
+}
 
 const Calculator = ({
   display,
@@ -7,8 +15,8 @@ const Calculator = ({
   handleEval,
   handleNum,
   handleOp,
-  handlePoint,
-}) => (
+  handlePoint
+}: CalculatorProps) => (
   <div id="calc-div">
     <div id="display">{display}</div>
     <button type="button" id="clear" className="buttons" onClick={handleClear}>
@@ -69,14 +77,5 @@ const Calculator = ({
     </button>
   </div>
 );
-
-Calculator.propTypes = {
-  display: PropTypes.string.isRequired,
-  handleClear: PropTypes.func.isRequired,
-  handleEval: PropTypes.func.isRequired,
-  handleNum: PropTypes.func.isRequired,
-  handleOp: PropTypes.func.isRequired,
-  handlePoint: PropTypes.func.isRequired,
-};
 
 export default Calculator;
