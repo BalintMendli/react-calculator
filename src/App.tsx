@@ -19,7 +19,7 @@ class App extends Component<{}, AppState> {
     super(props);
     this.state = {
       displayValue: '0',
-      isResult: false
+      isResult: false,
     };
     this.handleEval = this.handleEval.bind(this);
     this.handleNum = this.handleNum.bind(this);
@@ -29,11 +29,11 @@ class App extends Component<{}, AppState> {
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
-  componentDidMount() {
-    this.appDiv.current!.focus();
+  componentDidMount(): void {
+    if (this.appDiv.current) this.appDiv.current.focus();
   }
 
-  handleEval() {
+  handleEval(): void {
     const { displayValue } = this.state;
     const lastOp =
       ['/', '*', '+', '-'].indexOf(displayValue[displayValue.length - 1]) !==
@@ -45,12 +45,14 @@ class App extends Component<{}, AppState> {
           Math.round(1000000000000 * evaluate(prevState.displayValue)) /
           1000000000000
         ).toString(),
-        isResult: true
+        isResult: true,
       }));
     }
   }
 
-  handleNum(e: React.MouseEvent<HTMLButtonElement, MouseEvent> | EventObj) {
+  handleNum(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | EventObj
+  ): void {
     const { displayValue, isResult } = this.state;
     const target = e.target as HTMLElement;
     const value = target.innerHTML;
@@ -59,16 +61,18 @@ class App extends Component<{}, AppState> {
     if (displayValue === '0' || isResult) {
       this.setState({
         displayValue: value,
-        isResult: false
+        isResult: false,
       });
     } else if (!isMaxDigit && !lastZero) {
       this.setState(prevState => ({
-        displayValue: prevState.displayValue + value
+        displayValue: prevState.displayValue + value,
       }));
     }
   }
 
-  handleOp(e: React.MouseEvent<HTMLButtonElement, MouseEvent> | EventObj) {
+  handleOp(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | EventObj
+  ): void {
     const { displayValue } = this.state;
     const target = e.target as HTMLElement;
     const value = target.innerHTML;
@@ -80,43 +84,43 @@ class App extends Component<{}, AppState> {
     if (displayValue === '0' && (value === '+' || value === '-')) {
       this.setState({
         displayValue: value,
-        isResult: false
+        isResult: false,
       });
     } else if (!lastOp && !lastPoint && displayValue !== '0' && !isMaxDigit) {
       this.setState(prevState => ({
         displayValue: prevState.displayValue + value,
-        isResult: false
+        isResult: false,
       }));
     } else if (lastOp) {
       this.setState(prevState => ({
         displayValue: prevState.displayValue.slice(0, -1) + value,
-        isResult: false
+        isResult: false,
       }));
     }
   }
 
-  handlePoint() {
+  handlePoint(): void {
     const { displayValue, isResult } = this.state;
     const displayArr = displayValue.split(/[+\-*/]/);
     const pointCond = displayArr[displayArr.length - 1].indexOf('.') !== -1;
     const isMaxDigit = displayValue.length >= 18;
     if (!pointCond && !isResult && !isMaxDigit) {
       this.setState(prevState => ({
-        displayValue: `${prevState.displayValue}.`
+        displayValue: `${prevState.displayValue}.`,
       }));
     } else if (isResult) {
       this.setState({
         displayValue: '0.',
-        isResult: false
+        isResult: false,
       });
     }
   }
 
-  handleClear() {
+  handleClear(): void {
     this.setState({ displayValue: '0' });
   }
 
-  handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+  handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>): void {
     if (e.key === 'Enter') {
       e.preventDefault();
       this.handleEval();
@@ -154,12 +158,12 @@ class App extends Component<{}, AppState> {
     }
   }
 
-  render() {
+  render(): JSX.Element {
     const { displayValue } = this.state;
     return (
       <div
         className="App"
-        role="tabpanel"
+        role="button"
         tabIndex={0}
         ref={this.appDiv}
         onKeyDown={this.handleKeyDown}

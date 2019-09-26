@@ -15,8 +15,8 @@ const Calculator = ({
   handleEval,
   handleNum,
   handleOp,
-  handlePoint
-}: CalculatorProps) => (
+  handlePoint,
+}: CalculatorProps): JSX.Element => (
   <div id="calc-div">
     <div id="display">{display}</div>
     <button type="button" id="clear" className="buttons" onClick={handleClear}>
