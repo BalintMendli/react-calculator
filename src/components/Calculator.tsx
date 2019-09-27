@@ -1,7 +1,8 @@
 import React from 'react';
+import Display from './Display';
 
 interface CalculatorProps {
-  display: string;
+  result: string;
   handleClear: React.MouseEventHandler<HTMLButtonElement>;
   handleEval: React.MouseEventHandler<HTMLButtonElement>;
   handleNum: React.MouseEventHandler<HTMLButtonElement>;
@@ -10,7 +11,7 @@ interface CalculatorProps {
 }
 
 const Calculator = ({
-  display,
+  result,
   handleClear,
   handleEval,
   handleNum,
@@ -18,7 +19,7 @@ const Calculator = ({
   handlePoint,
 }: CalculatorProps): JSX.Element => (
   <div id="calc-div">
-    <div id="display">{display}</div>
+    <Display result={result} />
     <button type="button" id="clear" className="buttons" onClick={handleClear}>
       AC
     </button>

@@ -174,7 +174,7 @@ class App extends Component<{}, AppState> {
           handleNum={this.handleNum}
           handleEval={this.handleEval}
           handlePoint={this.handlePoint}
-          display={displayValue}
+          result={displayValue}
         />
       </div>
     );
