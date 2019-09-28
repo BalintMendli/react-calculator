@@ -1,9 +1,20 @@
 import React from 'react';
+import { Label, Id } from '../constants/buttons';
 
-const Button = ({ name }) => {
+interface ButtonProps {
+  label: Label;
+  id: Id;
+  handleClick: (label: Label) => void;
+}
+
+const Button = ({ label, id, handleClick }: ButtonProps): JSX.Element => {
+  const handleBtnClick = (): void => {
+    handleClick(label);
+  };
+
   return (
-    <button type="button" id="clear" className="buttons" onClick={handleClear}>
-      {name}
+    <button type="button" id={id} className="buttons" onClick={handleBtnClick}>
+      {label}
     </button>
   );
 };

@@ -1,81 +1,19 @@
 import React from 'react';
+import buttons, { Label } from '../constants/buttons';
 import Display from './Display';
+import Button from './Button';
 
 interface CalculatorProps {
   result: string;
-  handleClear: React.MouseEventHandler<HTMLButtonElement>;
-  handleEval: React.MouseEventHandler<HTMLButtonElement>;
-  handleNum: React.MouseEventHandler<HTMLButtonElement>;
-  handleOp: React.MouseEventHandler<HTMLButtonElement>;
-  handlePoint: React.MouseEventHandler<HTMLButtonElement>;
+  handleClick: (label: Label) => void;
 }
 
-const Calculator = ({
-  result,
-  handleClear,
-  handleEval,
-  handleNum,
-  handleOp,
-  handlePoint,
-}: CalculatorProps): JSX.Element => (
+const Calculator = ({ result, handleClick }: CalculatorProps): JSX.Element => (
   <div id="calc-div">
     <Display result={result} />
-    <button type="button" id="clear" className="buttons" onClick={handleClear}>
-      AC
-    </button>
-    <button type="button" id="divide" className="buttons" onClick={handleOp}>
-      /
-    </button>
-    <button type="button" id="multiply" className="buttons" onClick={handleOp}>
-      *
-    </button>
-    <button type="button" id="seven" className="buttons" onClick={handleNum}>
-      7
-    </button>
-    <button type="button" id="eight" className="buttons" onClick={handleNum}>
-      8
-    </button>
-    <button type="button" id="nine" className="buttons" onClick={handleNum}>
-      9
-    </button>
-    <button type="button" id="subtract" className="buttons" onClick={handleOp}>
-      -
-    </button>
-    <button type="button" id="four" className="buttons" onClick={handleNum}>
-      4
-    </button>
-    <button type="button" id="five" className="buttons" onClick={handleNum}>
-      5
-    </button>
-    <button type="button" id="six" className="buttons" onClick={handleNum}>
-      6
-    </button>
-    <button type="button" id="add" className="buttons" onClick={handleOp}>
-      +
-    </button>
-    <button type="button" id="one" className="buttons" onClick={handleNum}>
-      1
-    </button>
-    <button type="button" id="two" className="buttons" onClick={handleNum}>
-      2
-    </button>
-    <button type="button" id="three" className="buttons" onClick={handleNum}>
-      3
-    </button>
-    <button type="button" id="equals" className="buttons" onClick={handleEval}>
-      =
-    </button>
-    <button type="button" id="zero" className="buttons" onClick={handleNum}>
-      0
-    </button>
-    <button
-      type="button"
-      id="decimal"
-      className="buttons"
-      onClick={handlePoint}
-    >
-      .
-    </button>
+    {buttons.map(({ label, id }) => (
+      <Button key={label} label={label} id={id} handleClick={handleClick} />
+    ))}
   </div>
 );
 
