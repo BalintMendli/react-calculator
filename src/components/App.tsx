@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
-import './App.css';
+import styled from 'styled-components/macro';
 import { handleInput, AppState, getLabel } from '../logic/utils';
 import Calculator from './Calculator';
 import { Label } from '../constants/buttons';
+
+const StyledApp = styled.div`
+  text-align: center;
+  background-color: #a6cfe2;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 class App extends Component<{}, AppState> {
   private appDiv = React.createRef<HTMLDivElement>();
@@ -28,8 +38,9 @@ class App extends Component<{}, AppState> {
     );
   }
 
-  handleKeyDown({ key }: React.KeyboardEvent<HTMLDivElement>): void {
-    const label = getLabel(key);
+  handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>): void {
+    e.preventDefault();
+    const label = getLabel(e.key);
     if (label)
       this.setState(
         prevState =>
@@ -40,15 +51,14 @@ class App extends Component<{}, AppState> {
   render(): JSX.Element {
     const { displayValue } = this.state;
     return (
-      <div
-        className="App"
+      <StyledApp
         role="button"
         tabIndex={0}
         ref={this.appDiv}
         onKeyDown={this.handleKeyDown}
       >
         <Calculator handleClick={this.handleClick} result={displayValue} />
-      </div>
+      </StyledApp>
     );
   }
 }
