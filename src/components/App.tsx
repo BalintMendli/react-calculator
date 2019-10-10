@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/macro';
-import { handleInput, AppState, getLabel } from '../logic/utils';
+import { getLabel } from '../logic/utils';
+import handleInput from '../logic/handleInput';
 import Calculator from './Calculator';
 import { Label } from '../constants/buttons';
+import { AppState } from './AppState';
 
 const StyledApp = styled.div`
   text-align: center;
@@ -32,6 +34,7 @@ class App extends Component<{}, AppState> {
   }
 
   handleClick(label: Label): void {
+    console.log(label);
     this.setState(
       prevState =>
         handleInput(label, prevState) as Pick<AppState, keyof AppState>

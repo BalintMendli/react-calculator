@@ -1,17 +1,18 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { Label, Id, Pos } from '../constants/buttons';
+import { Color } from '../constants/colors';
 
 interface ButtonProps {
   label: Label;
   id: Id;
   pos: Pos;
-  color: string;
+  color: Color;
   handleClick: (label: Label) => void;
 }
 
 interface StyledProps {
-  color: string;
+  color: Color;
   posStrs: [string, string];
 }
 
@@ -31,6 +32,7 @@ const StyledButton = styled.button<StyledProps>`
   background: ${({ color }): string => color};
   padding: 0;
   font: inherit;
+  font-size: 1.1rem;
   outline: inherit;
   color: #fff;
   display: flex;
@@ -40,10 +42,10 @@ const StyledButton = styled.button<StyledProps>`
   border-radius: 5px;
   cursor: pointer;
   user-select: none;
-  opacity: 0.9;
+  opacity: 0.85;
+  transition: opacity 250ms ease-in-out;
 
   :hover {
-    border: 1px solid #91979c;
     opacity: 1;
   }
 `;

@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { transformForDisplay } from '../logic/utils';
 
 interface DisplayProps {
   result: string;
 }
 
 const StyledDisplay = styled.div`
-  grid-column: 1 / 5;
-  grid-row: 1;
+  height: 80px;
   color: #fff;
   display: flex;
   align-items: flex-end;
@@ -17,7 +17,7 @@ const StyledDisplay = styled.div`
 `;
 
 const Display = ({ result = '0' }: DisplayProps): JSX.Element => (
-  <StyledDisplay>{result}</StyledDisplay>
+  <StyledDisplay>{transformForDisplay(result)}</StyledDisplay>
 );
 
 export default Display;
