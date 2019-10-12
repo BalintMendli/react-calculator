@@ -7,6 +7,7 @@ import BtnPanel from './BtnPanel';
 
 interface CalculatorProps {
   result: string;
+  error: string;
   handleClick: (label: Label) => void;
 }
 
@@ -26,9 +27,13 @@ const StyledCalculator = styled.div<StyledProps>`
   border-radius: 5px;
 `;
 
-const Calculator = ({ result, handleClick }: CalculatorProps): JSX.Element => (
+const Calculator = ({
+  result,
+  error,
+  handleClick,
+}: CalculatorProps): JSX.Element => (
   <StyledCalculator widthPx={widthPx} heightPx={heightPx}>
-    <Display result={result} />
+    <Display result={result} error={error} />
     <BtnPanel handleClick={handleClick} />
   </StyledCalculator>
 );

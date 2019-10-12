@@ -1,4 +1,5 @@
 import { evaluate } from 'mathjs';
+import { fixFloat } from './utils';
 import buttons, { Button, Label } from '../constants/buttons';
 import { AppState } from '../components/AppState';
 
@@ -8,17 +9,20 @@ function selectButton(label: Label): Button | never {
   return button;
 }
 
-function evaluateExp(displayValue: string): AppState | null {
+function evaluateExp(displayValue: string): Partial<AppState> | null {
   const lastOp =
     ['/', '*', '+', '-'].indexOf(displayValue[displayValue.length - 1]) !== -1;
   const lastPoint = displayValue.slice(-1) === '.';
   if (!lastOp && !lastPoint) {
-    return {
-      displayValue: (
-        Math.round(1000000000000 * evaluate(displayValue)) / 1000000000000
-      ).toString(),
-      isResult: true,
-    };
+    try {
+      return {
+        displayValue: fixFloat(evaluate(displayValue)).toString(),
+        isResult: true,
+        error: '',
+      };
+    } catch (e) {
+      return { error: e.message };
+    }
   }
   return null;
 }
@@ -33,11 +37,13 @@ function handleNum(
     return {
       displayValue: num,
       isResult: false,
+      error: '',
     };
   }
   if (!hasMaxDigit) {
     return {
       displayValue: displayValue + num,
+      error: '',
     };
   }
   return null;
@@ -53,11 +59,13 @@ function handleParen(
     return {
       displayValue: paren,
       isResult: false,
+      error: '',
     };
   }
   if (!hasMaxDigit) {
     return {
       displayValue: displayValue + paren,
+      error: '',
     };
   }
   return null;
@@ -80,11 +88,13 @@ function handleExt(
     return {
       displayValue: toDisplay,
       isResult: false,
+      error: '',
     };
   }
   if (!hasMaxDigit) {
     return {
       displayValue: displayValue + toDisplay,
+      error: '',
     };
   }
   return null;
@@ -94,7 +104,7 @@ function handleOp(
   op: string,
   displayValue: string,
   isResult: boolean
-): AppState | null {
+): Partial<AppState> | null {
   const lastOp =
     ['/', '*', '+', '-'].indexOf(displayValue[displayValue.length - 1]) !== -1;
   const lastPoint = displayValue.slice(-1) === '.';
@@ -103,18 +113,21 @@ function handleOp(
     return {
       displayValue: displayValue + op,
       isResult: false,
+      error: '',
     };
   }
   if (!lastOp && !lastPoint && displayValue !== '0' && !isMaxDigit) {
     return {
       displayValue: displayValue + op,
       isResult: false,
+      error: '',
     };
   }
   if (lastOp) {
     return {
       displayValue: displayValue.slice(0, -1) + op,
       isResult: false,
+      error: '',
     };
   }
   return null;
@@ -130,21 +143,24 @@ function handleDecimal(
   if (!pointCond && !isResult && !isMaxDigit) {
     return {
       displayValue: `${displayValue}.`,
+      error: '',
     };
   }
   if (isResult) {
     return {
       displayValue: '0.',
       isResult: false,
+      error: '',
     };
   }
   return null;
 }
 
 function handleClear(label: Label, displayValue: string): Partial<AppState> {
-  if (label === 'AC') return { displayValue: '0' };
+  if (label === 'AC') return { displayValue: '0', error: '' };
   return {
     displayValue: displayValue.length > 1 ? displayValue.slice(0, -1) : '0',
+    error: '',
   };
 }
 

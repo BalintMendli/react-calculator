@@ -10,11 +10,11 @@ const colorMap = {
   ext: '#595a5b',
 } as const;
 
-const colors: { [key in BtnType]?: Color } = colorMap;
-
 type Keys = keyof typeof colorMap;
 
 export type Color = typeof colorMap[Keys] | typeof defaultColor;
+
+const colors: { [key in BtnType]?: Color } = colorMap;
 
 export function getColor(btn: Button): Color {
   return colors[btn.type] || defaultColor;

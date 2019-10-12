@@ -24,6 +24,7 @@ class App extends Component<{}, AppState> {
     this.state = {
       displayValue: '0',
       isResult: false,
+      error: '',
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -34,7 +35,6 @@ class App extends Component<{}, AppState> {
   }
 
   handleClick(label: Label): void {
-    console.log(label);
     this.setState(
       prevState =>
         handleInput(label, prevState) as Pick<AppState, keyof AppState>
@@ -52,7 +52,7 @@ class App extends Component<{}, AppState> {
   }
 
   render(): JSX.Element {
-    const { displayValue } = this.state;
+    const { displayValue, error } = this.state;
     return (
       <StyledApp
         role="button"
@@ -60,7 +60,11 @@ class App extends Component<{}, AppState> {
         ref={this.appDiv}
         onKeyDown={this.handleKeyDown}
       >
-        <Calculator handleClick={this.handleClick} result={displayValue} />
+        <Calculator
+          handleClick={this.handleClick}
+          result={displayValue}
+          error={error}
+        />
       </StyledApp>
     );
   }
