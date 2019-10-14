@@ -16,6 +16,7 @@ function evaluateExp(displayValue: string): Partial<AppState> | null {
   if (!lastOp && !lastPoint) {
     try {
       return {
+        expression: displayValue,
         displayValue: fixFloat(evaluate(displayValue)).toString(),
         isResult: true,
         error: '',

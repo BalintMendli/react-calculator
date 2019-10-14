@@ -23,6 +23,7 @@ class App extends Component<{}, AppState> {
     super(props);
     this.state = {
       displayValue: '0',
+      expression: '',
       isResult: false,
       error: '',
     };
@@ -52,7 +53,7 @@ class App extends Component<{}, AppState> {
   }
 
   render(): JSX.Element {
-    const { displayValue, error } = this.state;
+    const { displayValue, expression, error } = this.state;
     return (
       <StyledApp
         role="button"
@@ -63,6 +64,7 @@ class App extends Component<{}, AppState> {
         <Calculator
           handleClick={this.handleClick}
           result={displayValue}
+          expression={expression}
           error={error}
         />
       </StyledApp>

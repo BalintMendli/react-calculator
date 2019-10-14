@@ -4,6 +4,7 @@ import { transformForDisplay, transformError } from '../logic/utils';
 
 interface DisplayProps {
   result: string;
+  expression: string;
   error: string;
 }
 
@@ -14,22 +15,39 @@ const StyledDisplay = styled.div`
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;
-  padding-bottom: 10px;
+  padding-bottom: 3px;
   font-size: 26px;
+  line-height: 1.05;
 `;
 
 const StyledError = styled.div`
   height: 20px;
-  color: #fff;
+  max-width: 420px;
   background-color: #a5243d;
-  padding: 0 5px;
   font-size: 14px;
   border-radius: 2px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  :not(:empty) {
+    padding: 2px 5px;
+  }
 `;
 
-const Display = ({ result = '0', error }: DisplayProps): JSX.Element => (
+const StyledExp = styled.div`
+  height: 22px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+`;
+
+const Display = ({ result, expression, error }: DisplayProps): JSX.Element => (
   <StyledDisplay>
-    {error && <StyledError>{transformError(error, result)}</StyledError>}
+    <StyledError>{error ? transformError(error, result) : ''}</StyledError>
+    <StyledExp>
+      {expression ? `${transformForDisplay(expression)} =` : ''}
+    </StyledExp>
     <div>{transformForDisplay(result)}</div>
   </StyledDisplay>
 );

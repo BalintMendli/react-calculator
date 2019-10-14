@@ -1,4 +1,4 @@
-export const heightPx = 420;
+export const heightPx = 350;
 
 export const widthPx = 450;
 
