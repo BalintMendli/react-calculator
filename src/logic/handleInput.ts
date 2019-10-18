@@ -1,6 +1,7 @@
 import { evaluate } from 'mathjs';
-import { fixFloat } from './utils';
+import { countOccurrences, fixFloat } from './utils';
 import buttons, { Button, Label } from '../constants/buttons';
+import { maxDigit } from '../constants/dimensions';
 import { AppState } from '../components/AppState';
 
 function selectButton(label: Label): Button | never {
@@ -33,7 +34,8 @@ function handleNum(
   displayValue: string,
   isResult: boolean
 ): Partial<AppState> | null {
-  const hasMaxDigit = displayValue.length >= 18;
+  const hasMaxDigit = displayValue.length >= maxDigit;
+  const lastPi = displayValue.slice(-2) === 'pi';
   if (displayValue === '0' || isResult) {
     return {
       displayValue: num,
@@ -41,7 +43,7 @@ function handleNum(
       error: '',
     };
   }
-  if (!hasMaxDigit) {
+  if (!hasMaxDigit && !lastPi) {
     return {
       displayValue: displayValue + num,
       error: '',
@@ -55,15 +57,19 @@ function handleParen(
   displayValue: string,
   isResult: boolean
 ): Partial<AppState> | null {
-  const hasMaxDigit = displayValue.length >= 18;
-  if (displayValue === '0' || isResult) {
+  const hasMaxDigit = displayValue.length >= maxDigit;
+  const hasLessOpening =
+    paren === '(' ||
+    countOccurrences(displayValue, /\(/g) >
+      countOccurrences(displayValue, /\)/g);
+  if ((displayValue === '0' || isResult) && hasLessOpening) {
     return {
       displayValue: paren,
       isResult: false,
       error: '',
     };
   }
-  if (!hasMaxDigit) {
+  if (!hasMaxDigit && hasLessOpening) {
     return {
       displayValue: displayValue + paren,
       error: '',
@@ -84,7 +90,7 @@ function handleExt(
   if (ext === 'x²') toDisplay = '^2';
   if (ext === 'x!') toDisplay = '!';
   if (ext === '√') toDisplay = 'sqrt(';
-  const hasMaxDigit = displayValue.length >= 18;
+  const hasMaxDigit = displayValue.length >= maxDigit;
   if (displayValue === '0' && toDisplay !== '^2' && toDisplay !== '!') {
     return {
       displayValue: toDisplay,
@@ -109,7 +115,7 @@ function handleOp(
   const lastOp =
     ['/', '*', '+', '-'].indexOf(displayValue[displayValue.length - 1]) !== -1;
   const lastPoint = displayValue.slice(-1) === '.';
-  const isMaxDigit = displayValue.length >= 18;
+  const isMaxDigit = displayValue.length >= maxDigit;
   if (displayValue === '0') {
     return {
       displayValue: displayValue + op,
@@ -139,9 +145,10 @@ function handleDecimal(
   isResult: boolean
 ): Partial<AppState> | null {
   const displayArr = displayValue.split(/[+\-*/]/);
-  const pointCond = displayArr[displayArr.length - 1].indexOf('.') !== -1;
-  const isMaxDigit = displayValue.length >= 18;
-  if (!pointCond && !isResult && !isMaxDigit) {
+  const hasPoint = displayArr[displayArr.length - 1].includes('.');
+  const lastPi = displayValue.slice(-2) === 'pi';
+  const isMaxDigit = displayValue.length >= maxDigit;
+  if (!hasPoint && !isResult && !isMaxDigit && !lastPi) {
     return {
       displayValue: `${displayValue}.`,
       error: '',
@@ -157,12 +164,18 @@ function handleDecimal(
   return null;
 }
 
-function handleClear(label: Label, displayValue: string): Partial<AppState> {
-  if (label === 'AC') return { displayValue: '0', error: '' };
-  return {
-    displayValue: displayValue.length > 1 ? displayValue.slice(0, -1) : '0',
-    error: '',
-  };
+function handleClear(
+  label: Label,
+  displayValue: string,
+  isResult: boolean
+): Partial<AppState> | null {
+  if (label === 'AC') return { displayValue: '0', expression: '', error: '' };
+  if (label === 'C' && !isResult)
+    return {
+      displayValue: displayValue.length > 1 ? displayValue.slice(0, -1) : '0',
+      error: '',
+    };
+  return null;
 }
 
 export default function handleInput(
@@ -171,7 +184,8 @@ export default function handleInput(
 ): Partial<AppState> | null {
   const { displayValue, isResult } = state;
   const button = selectButton(label);
-  if (button.type === 'clear') return handleClear(label, displayValue);
+  if (button.type === 'clear')
+    return handleClear(label, displayValue, isResult);
   if (button.type === 'number') return handleNum(label, displayValue, isResult);
   if (button.type === 'operation')
     return handleOp(label, displayValue, isResult);

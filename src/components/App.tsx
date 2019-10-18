@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/macro';
-import { getLabel } from '../logic/utils';
+import { getLabelFromKey } from '../logic/utils';
 import handleInput from '../logic/handleInput';
 import Calculator from './Calculator';
 import { Label } from '../constants/buttons';
@@ -44,7 +44,7 @@ class App extends Component<{}, AppState> {
 
   handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>): void {
     e.preventDefault();
-    const label = getLabel(e.key);
+    const label = getLabelFromKey(e.key);
     if (label)
       this.setState(
         prevState =>
