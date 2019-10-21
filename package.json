@@ -36,6 +36,9 @@
     "eslint-plugin-react": "^7.14.3",
     "prettier": "^1.18.2"
   },
+  "babelMacros": {
+    "styledComponents": {}
+  },
   "browserslist": [
     ">0.2%",
     "not dead",

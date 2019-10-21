@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Label, Id, Pos } from '../constants/buttons';
 import { Color } from '../constants/colors';
+import { getGridPos } from '../logic/utils';
 
 interface ButtonProps {
   label: Label;
@@ -13,22 +14,12 @@ interface ButtonProps {
 
 interface StyledProps {
   color: Color;
-  posStrs: [string, string];
-}
-
-function getPosStrs(pos: Pos): [string, string] {
-  const xPos = Array.isArray(pos.x)
-    ? `${pos.x[0]} / ${pos.x[1]}`
-    : pos.x.toString();
-  const yPos = Array.isArray(pos.y)
-    ? `${pos.y[0]} / ${pos.y[1]}`
-    : pos.y.toString();
-  return [xPos, yPos];
+  gridPos: [string, string];
 }
 
 const StyledButton = styled.button<StyledProps>`
-  grid-column: ${({ posStrs }): string => posStrs[0]};
-  grid-row: ${({ posStrs }): string => posStrs[1]};
+  grid-column: ${({ gridPos }): string => gridPos[0]};
+  grid-row: ${({ gridPos }): string => gridPos[1]};
   background: ${({ color }): string => color};
   padding: 0;
   font: inherit;
@@ -66,7 +57,7 @@ const Button = ({
       type="button"
       id={id}
       color={color}
-      posStrs={getPosStrs(pos)}
+      gridPos={getGridPos(pos)}
       onClick={handleBtnClick}
     >
       {label}

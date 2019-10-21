@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import buttons, { Label } from '../constants/buttons';
 import { getColor } from '../constants/colors';
-import { height, width } from '../constants/dimensions';
+import { rows, columns } from '../constants/dimensions';
+import { getDimStyle } from '../logic/utils';
 import Button from './Button';
 
 interface BtnPanelProps {
@@ -12,10 +13,6 @@ interface BtnPanelProps {
 interface StyledProps {
   width: number;
   height: number;
-}
-
-function getDimStyle(dim: number): string {
-  return new Array(dim).fill('1fr').join(' ');
 }
 
 const StyledBtnPanel = styled.div<StyledProps>`
@@ -29,7 +26,7 @@ const StyledBtnPanel = styled.div<StyledProps>`
 `;
 
 const BtnPanel = ({ handleClick }: BtnPanelProps): JSX.Element => (
-  <StyledBtnPanel width={width} height={height}>
+  <StyledBtnPanel width={columns} height={rows}>
     {buttons.map(btn => (
       <Button
         key={btn.label}

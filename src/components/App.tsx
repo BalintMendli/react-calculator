@@ -38,7 +38,7 @@ class App extends Component<{}, AppState> {
   handleClick(label: Label): void {
     this.setState(
       prevState =>
-        handleInput(label, prevState) as Pick<AppState, keyof AppState>
+        handleInput(label, { ...prevState }) as Pick<AppState, keyof AppState>
     );
   }
 
