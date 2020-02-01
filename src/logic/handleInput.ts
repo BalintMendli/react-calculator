@@ -20,7 +20,7 @@ const handleMap: { [key in BtnType]: keyof typeof operate } = {
 
 export default function handleInput(
   label: Label,
-  state: AppState
+  state: AppState,
 ): Partial<AppState> | null {
   const button = selectButton(label);
   const func = handleMap[button.type];
