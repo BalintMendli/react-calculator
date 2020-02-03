@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component renders correctly 1`] = `
+"<App__StyledApp id=\\"main\\" tabIndex={0} onKeyDown={[Function: bound handleKeyDown]}>
+  <Calculator handleClick={[Function: bound handleClick]} result=\\"0\\" expression=\\"\\" error=\\"\\" />
+</App__StyledApp>"
+`;

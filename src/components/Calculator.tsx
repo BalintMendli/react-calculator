@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Label } from '../constants/buttons';
-import { heightPx, widthPx } from '../constants/dimensions';
+import { Label } from 'constants/buttons';
+import { heightPx, widthPx } from 'constants/dimensions';
 import Display from './Display';
 import BtnPanel from './BtnPanel';
 
@@ -34,7 +34,7 @@ const Calculator = ({
   error,
   handleClick,
 }: CalculatorProps): JSX.Element => (
-  <StyledCalculator widthPx={widthPx} heightPx={heightPx}>
+  <StyledCalculator id="calculator" widthPx={widthPx} heightPx={heightPx}>
     <Display result={result} expression={expression} error={error} />
     <BtnPanel handleClick={handleClick} />
   </StyledCalculator>

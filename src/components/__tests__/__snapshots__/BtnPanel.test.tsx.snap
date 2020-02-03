@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BtnPanel component renders correctly 1`] = `
+"<BtnPanel__StyledBtnPanel id=\\"btn-panel\\" width={6} height={5}>
+  <Button label=\\"AC\\" id=\\"clear\\" pos={{...}} color=\\"#a5243d\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"C\\" id=\\"clear\\" pos={{...}} color=\\"#a5243d\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"/\\" id=\\"divide\\" pos={{...}} color=\\"#798086\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"*\\" id=\\"multiply\\" pos={{...}} color=\\"#798086\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"7\\" id=\\"seven\\" pos={{...}} color=\\"#42464a\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"8\\" id=\\"eight\\" pos={{...}} color=\\"#42464a\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"9\\" id=\\"nine\\" pos={{...}} color=\\"#42464a\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"-\\" id=\\"subtract\\" pos={{...}} color=\\"#798086\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"4\\" id=\\"four\\" pos={{...}} color=\\"#42464a\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"5\\" id=\\"five\\" pos={{...}} color=\\"#42464a\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"6\\" id=\\"six\\" pos={{...}} color=\\"#42464a\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"+\\" id=\\"add\\" pos={{...}} color=\\"#798086\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"1\\" id=\\"one\\" pos={{...}} color=\\"#42464a\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"2\\" id=\\"two\\" pos={{...}} color=\\"#42464a\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"3\\" id=\\"three\\" pos={{...}} color=\\"#42464a\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"=\\" id=\\"equals\\" pos={{...}} color=\\"#466995\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"0\\" id=\\"zero\\" pos={{...}} color=\\"#42464a\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\".\\" id=\\"decimal\\" pos={{...}} color=\\"#42464a\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"(\\" id=\\"open-paren\\" pos={{...}} color=\\"#595a5b\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\")\\" id=\\"close-paren\\" pos={{...}} color=\\"#595a5b\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"sin\\" id=\\"sin\\" pos={{...}} color=\\"#595a5b\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"cos\\" id=\\"cos\\" pos={{...}} color=\\"#595a5b\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"tan\\" id=\\"tan\\" pos={{...}} color=\\"#595a5b\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"π\\" id=\\"tan\\" pos={{...}} color=\\"#595a5b\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"√\\" id=\\"tan\\" pos={{...}} color=\\"#595a5b\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"x²\\" id=\\"tan\\" pos={{...}} color=\\"#595a5b\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"log\\" id=\\"tan\\" pos={{...}} color=\\"#595a5b\\" handleClick={[Function: mockConstructor]} />
+  <Button label=\\"x!\\" id=\\"tan\\" pos={{...}} color=\\"#595a5b\\" handleClick={[Function: mockConstructor]} />
+</BtnPanel__StyledBtnPanel>"
+`;

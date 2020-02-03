@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/macro';
-import { getLabelFromKey } from '../logic/utils';
-import handleInput from '../logic/handleInput';
+import { getLabelFromKey } from 'logic/utils';
+import handleInput from 'logic/handleInput';
+import { Label } from 'constants/buttons';
 import Calculator from './Calculator';
-import { Label } from '../constants/buttons';
 import { AppState } from './AppState';
 
-const StyledApp = styled.div`
+const StyledApp = styled.main`
   text-align: center;
   background-color: #a6cfe2;
   height: 100vh;
@@ -56,7 +56,7 @@ class App extends Component<{}, AppState> {
     const { displayValue, expression, error } = this.state;
     return (
       <StyledApp
-        role="button"
+        id="main"
         tabIndex={0}
         ref={this.appDiv}
         onKeyDown={this.handleKeyDown}

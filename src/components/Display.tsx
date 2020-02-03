@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { transformForDisplay, transformError } from '../logic/utils';
+import { transformForDisplay, transformError } from 'logic/utils';
 
 interface DisplayProps {
   result: string;
@@ -52,12 +52,14 @@ const StyledExp = styled.div`
 `;
 
 const Display = ({ result, expression, error }: DisplayProps): JSX.Element => (
-  <StyledDisplay>
-    <StyledError>{error ? transformError(error, result) : ''}</StyledError>
-    <StyledExp>
+  <StyledDisplay id="display">
+    <StyledError id="error">
+      {error ? transformError(error, result) : ''}
+    </StyledError>
+    <StyledExp id="expression">
       {expression ? `${transformForDisplay(expression)} =` : ''}
     </StyledExp>
-    <div>{transformForDisplay(result)}</div>
+    <div id="result">{transformForDisplay(result)}</div>
   </StyledDisplay>
 );
 

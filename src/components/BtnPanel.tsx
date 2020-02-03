@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import buttons, { Label } from '../constants/buttons';
-import { getColor } from '../constants/colors';
-import { rows, columns } from '../constants/dimensions';
-import { getDimStyle } from '../logic/utils';
+import buttons, { Label } from 'constants/buttons';
+import { getColor } from 'constants/colors';
+import { rows, columns } from 'constants/dimensions';
+import { getDimStyle } from 'logic/utils';
 import Button from './Button';
 
 interface BtnPanelProps {
@@ -26,7 +26,7 @@ const StyledBtnPanel = styled.div<StyledProps>`
 `;
 
 const BtnPanel = ({ handleClick }: BtnPanelProps): JSX.Element => (
-  <StyledBtnPanel width={columns} height={rows}>
+  <StyledBtnPanel id="btn-panel" width={columns} height={rows}>
     {buttons.map(btn => (
       <Button
         key={btn.label}

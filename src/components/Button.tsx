@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Label, Id, Pos } from '../constants/buttons';
-import { Color } from '../constants/colors';
-import { getGridPos } from '../logic/utils';
+import { Label, Id, Pos } from 'constants/buttons';
+import { Color } from 'constants/colors';
+import { getGridPos } from 'logic/utils';
 
 interface ButtonProps {
   label: Label;

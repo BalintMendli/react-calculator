@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Display component renders correctly 1`] = `
+"<Display__StyledDisplay id=\\"display\\">
+  <Display__StyledError id=\\"error\\">
+    test error
+  </Display__StyledError>
+  <Display__StyledExp id=\\"expression\\">
+    test expression =
+  </Display__StyledExp>
+  <div id=\\"result\\">
+    test result
+  </div>
+</Display__StyledDisplay>"
+`;

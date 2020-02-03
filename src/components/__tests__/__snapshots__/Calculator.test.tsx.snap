@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Calculator component renders correctly 1`] = `
+"<Calculator__StyledCalculator id=\\"calculator\\" widthPx={450} heightPx={350}>
+  <Display result=\\"test result\\" expression=\\"test expression\\" error=\\"test error\\" />
+  <BtnPanel handleClick={[Function: mockConstructor]} />
+</Calculator__StyledCalculator>"
+`;
