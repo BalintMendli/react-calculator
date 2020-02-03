@@ -4,6 +4,7 @@
   "homepage": "https://zenott.github.io/react-calculator",
   "private": true,
   "dependencies": {
+    "@types/enzyme": "^3.10.4",
     "@types/jest": "^25.1.1",
     "@types/mathjs": "^6.0.4",
     "@types/node": "^13.5.3",
@@ -27,6 +28,9 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "@typescript-eslint/parser": "^2.18.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.20.0",

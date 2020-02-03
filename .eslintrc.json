@@ -9,7 +9,10 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "prettier/@typescript-eslint",
-    "plugin:jest/recommended"
+    "plugin:jest/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -19,8 +22,18 @@
   "plugins": ["@typescript-eslint", "jest"],
   "rules": {
     "react/jsx-filename-extension": [
-      1,
+      "warn",
       { "extensions": [".js", ".jsx", ".tsx"] }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
     ],
     "spaced-comment": ["error", "always", { "markers": ["/"] }],
     "react/prop-types": "off",
@@ -39,7 +52,8 @@
     },
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "src/"]
       }
     },
     "react": {
