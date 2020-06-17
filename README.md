@@ -63,8 +63,8 @@ $ npm run test
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!
-Feel free to check [issues page](https://github.com/zenott/react-calculator/issues/).
+Contributions, issues, and feature requests are welcome!
+Feel free to check the [issues page](https://github.com/zenott/react-calculator/issues/).
 
 1. Fork it
 2. Create your working branch
