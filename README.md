@@ -6,7 +6,7 @@
 
 ## Live Demo
 
-[Demo](https://zenott.github.io/react-calculator/)
+[Demo](https://balintmendli.github.io/react-calculator/)
 
 ## Built With
 
@@ -26,7 +26,7 @@
 Clone the repository to your local machine
 
 ```
-$ git clone https://github.com/zenott/react-calculator.git
+$ git clone https://github.com/BalintMendli/react-calculator.git
 ```
 
 Change into the project directory
@@ -57,14 +57,14 @@ $ npm run test
 
 👤 **Balint Mendli**
 
-- GitHub: [@zenott](https://github.com/zenott)
+- GitHub: [@BalintMendli](https://github.com/BalintMendli)
 - Website: [mendli.com](https://mendli.com)
 - Email: [balint@mendli.com](mailto:balint@mendli.com)
 
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
-Feel free to check the [issues page](https://github.com/zenott/react-calculator/issues/).
+Feel free to check the [issues page](https://github.com/BalintMendli/react-calculator/issues/).
 
 1. Fork it
 2. Create your working branch
